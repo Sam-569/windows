@@ -1,0 +1,39 @@
+# Input patterns
+patterns = [
+    [1, -1, 1],
+    [-1, 1, -1]
+]
+
+# Initialize weights
+weights = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+]
+
+# Hebbian learning
+for p in patterns:
+    for i in range(3):
+        for j in range(3):
+            weights[i][j] += p[i] * p[j]
+
+# Recall pattern
+input_pattern = [1, -1, 1]
+output = []
+
+for i in range(3):
+    total = 0
+
+    for j in range(3):
+        total += weights[i][j] * input_pattern[j]
+
+    if total >= 0:
+        output.append(1)
+    else:
+        output.append(-1)
+
+print("Weights:")
+for row in weights:
+    print(row)
+
+print("Recalled Pattern:", output)
